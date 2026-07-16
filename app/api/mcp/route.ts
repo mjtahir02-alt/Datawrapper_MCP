@@ -18,6 +18,9 @@ const primitive = z.union([
 ]);
 const rowsSchema = z.array(z.record(primitive)).min(1).max(10_000);
 
+const noAuthSecuritySchemes = [{ type: "noauth" as const }];
+const noAuthMeta = { securitySchemes: noAuthSecuritySchemes };
+
 function client(): DatawrapperClient {
   return DatawrapperClient.fromEnv();
 }
@@ -48,6 +51,13 @@ const handler = createMcpHandler(
           limit: z.number().int().min(1).max(100).default(20),
           offset: z.number().int().min(0).default(0),
         }),
+        securitySchemes: noAuthSecuritySchemes,
+        _meta: noAuthMeta,
+        annotations: {
+          readOnlyHint: true,
+          destructiveHint: false,
+          openWorldHint: true,
+        },
       },
       async ({ limit, offset }) => {
         try {
@@ -68,6 +78,13 @@ const handler = createMcpHandler(
         inputSchema: z.object({
           chartId: z.string().min(1).max(64),
         }),
+        securitySchemes: noAuthSecuritySchemes,
+        _meta: noAuthMeta,
+        annotations: {
+          readOnlyHint: true,
+          destructiveHint: false,
+          openWorldHint: true,
+        },
       },
       async ({ chartId }) => {
         try {
@@ -96,6 +113,14 @@ const handler = createMcpHandler(
           csv: z.string().min(1).optional(),
           rows: rowsSchema.optional(),
         }),
+        securitySchemes: noAuthSecuritySchemes,
+        _meta: noAuthMeta,
+        annotations: {
+          readOnlyHint: false,
+          destructiveHint: false,
+          openWorldHint: true,
+          idempotentHint: false,
+        },
       },
       async ({ title, type, theme, folderId, csv, rows }) => {
         try {
@@ -140,6 +165,14 @@ const handler = createMcpHandler(
           csv: z.string().min(1).optional(),
           rows: rowsSchema.optional(),
         }),
+        securitySchemes: noAuthSecuritySchemes,
+        _meta: noAuthMeta,
+        annotations: {
+          readOnlyHint: false,
+          destructiveHint: true,
+          openWorldHint: true,
+          idempotentHint: true,
+        },
       },
       async ({ chartId, csv, rows }) => {
         try {
@@ -170,6 +203,14 @@ const handler = createMcpHandler(
           sourceUrl: z.string().url().max(2_000).optional(),
           notes: z.string().max(5_000).optional(),
         }),
+        securitySchemes: noAuthSecuritySchemes,
+        _meta: noAuthMeta,
+        annotations: {
+          readOnlyHint: false,
+          destructiveHint: false,
+          openWorldHint: true,
+          idempotentHint: true,
+        },
       },
       async ({ chartId, ...metadata }) => {
         try {
@@ -198,6 +239,14 @@ const handler = createMcpHandler(
         inputSchema: z.object({
           chartId: z.string().min(1).max(64),
         }),
+        securitySchemes: noAuthSecuritySchemes,
+        _meta: noAuthMeta,
+        annotations: {
+          readOnlyHint: false,
+          destructiveHint: false,
+          openWorldHint: true,
+          idempotentHint: true,
+        },
       },
       async ({ chartId }) => {
         try {
@@ -224,6 +273,14 @@ const handler = createMcpHandler(
           chartId: z.string().min(1).max(64),
           title: z.string().min(1).max(300).optional(),
         }),
+        securitySchemes: noAuthSecuritySchemes,
+        _meta: noAuthMeta,
+        annotations: {
+          readOnlyHint: false,
+          destructiveHint: false,
+          openWorldHint: true,
+          idempotentHint: false,
+        },
       },
       async ({ chartId, title }) => {
         try {
