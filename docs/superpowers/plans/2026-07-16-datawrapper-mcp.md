@@ -13,6 +13,7 @@
 - [x] Expose seven MCP tools at `/api/mcp`.
 - [x] Add optional MCP bearer protection through `MCP_ACCESS_TOKEN`.
 - [x] Add `/api/health`, a landing page, and deployment documentation.
-- [ ] Complete the Vercel production build.
+- [x] Complete the Vercel production build.
 - [ ] Configure `DATAWRAPPER_API_TOKEN` in Vercel.
-- [ ] Validate `/api/health` and MCP tool discovery.
+- [x] Validate `/api/health`.
+- [ ] Validate live Datawrapper tool calls after the API token is configured.
