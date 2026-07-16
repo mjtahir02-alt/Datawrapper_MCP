@@ -51,7 +51,6 @@ const handler = createMcpHandler(
           limit: z.number().int().min(1).max(100).default(20),
           offset: z.number().int().min(0).default(0),
         }),
-        securitySchemes: noAuthSecuritySchemes,
         _meta: noAuthMeta,
         annotations: {
           readOnlyHint: true,
@@ -78,7 +77,6 @@ const handler = createMcpHandler(
         inputSchema: z.object({
           chartId: z.string().min(1).max(64),
         }),
-        securitySchemes: noAuthSecuritySchemes,
         _meta: noAuthMeta,
         annotations: {
           readOnlyHint: true,
@@ -113,7 +111,6 @@ const handler = createMcpHandler(
           csv: z.string().min(1).optional(),
           rows: rowsSchema.optional(),
         }),
-        securitySchemes: noAuthSecuritySchemes,
         _meta: noAuthMeta,
         annotations: {
           readOnlyHint: false,
@@ -165,7 +162,6 @@ const handler = createMcpHandler(
           csv: z.string().min(1).optional(),
           rows: rowsSchema.optional(),
         }),
-        securitySchemes: noAuthSecuritySchemes,
         _meta: noAuthMeta,
         annotations: {
           readOnlyHint: false,
@@ -203,7 +199,6 @@ const handler = createMcpHandler(
           sourceUrl: z.string().url().max(2_000).optional(),
           notes: z.string().max(5_000).optional(),
         }),
-        securitySchemes: noAuthSecuritySchemes,
         _meta: noAuthMeta,
         annotations: {
           readOnlyHint: false,
@@ -239,7 +234,6 @@ const handler = createMcpHandler(
         inputSchema: z.object({
           chartId: z.string().min(1).max(64),
         }),
-        securitySchemes: noAuthSecuritySchemes,
         _meta: noAuthMeta,
         annotations: {
           readOnlyHint: false,
@@ -273,7 +267,6 @@ const handler = createMcpHandler(
           chartId: z.string().min(1).max(64),
           title: z.string().min(1).max(300).optional(),
         }),
-        securitySchemes: noAuthSecuritySchemes,
         _meta: noAuthMeta,
         annotations: {
           readOnlyHint: false,
