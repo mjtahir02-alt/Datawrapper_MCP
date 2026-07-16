@@ -4,14 +4,6 @@
 
 Build a remote Model Context Protocol server that lets MCP-compatible AI clients create, inspect, update, duplicate, and publish Datawrapper charts through Datawrapper API v3.
 
-## Operating Model
-
-- GitHub is the source of truth for code, documentation, and change history.
-- Vercel remains the production runtime and deployment platform.
-- The production deployment continues to track the `main` branch.
-- Changes must be developed on a separate branch and reviewed through a pull request before merge.
-- Repository-governance work must not alter the live MCP endpoint, Vercel project linkage, authentication, domains, or environment variables.
-
 ## Deployment
 
 - Source repository: `mjtahir02-alt/Datawrapper_MCP`
@@ -55,7 +47,6 @@ Build a remote Model Context Protocol server that lets MCP-compatible AI clients
 - Return concise text plus JSON for reliable use across MCP clients.
 - Never delete charts in the initial release.
 - Do not automatically publish newly created or duplicated charts.
-- Preserve existing tool names, input schemas, output contracts, endpoint paths, and transport behavior unless a versioned migration is explicitly approved.
 
 ## Reliability
 
@@ -64,7 +55,6 @@ Build a remote Model Context Protocol server that lets MCP-compatible AI clients
 - MCP function duration: 60 seconds.
 - SSE is disabled; Streamable HTTP is the supported remote transport.
 - Health checks report configuration state only, never secret values.
-- Upstream errors and rate limits must be surfaced clearly rather than replaced with invented results.
 
 ## Testing
 
@@ -73,6 +63,11 @@ Build a remote Model Context Protocol server that lets MCP-compatible AI clients
 - Unit tests cover Datawrapper request URLs, authorization headers, and upstream error handling.
 - Production validation requires a successful Vercel build and health endpoint response.
 
-## Current Workstream
+## GitHub governance
 
-Establish safe GitHub-based governance and audit the existing repository without changing production behavior. Any proposed code or configuration changes will be documented separately and submitted through a pull request.
+- GitHub is the source of truth for code, specifications, and change history.
+- Vercel remains the production runtime and continues to deploy from `main`.
+- All changes should be developed on separate branches and submitted through pull requests.
+- Pull requests must pass installation, tests, type checking, and production build validation before merge.
+- Preview deployments should be validated before production changes are merged.
+- Routine repository maintenance must not change MCP endpoints, tool contracts, authentication, environment variables, Vercel project linkage, or chart publishing behavior.
