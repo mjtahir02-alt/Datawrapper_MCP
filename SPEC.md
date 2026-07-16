@@ -62,3 +62,12 @@ Build a remote Model Context Protocol server that lets MCP-compatible AI clients
 - Unit tests cover metadata patch construction.
 - Unit tests cover Datawrapper request URLs, authorization headers, and upstream error handling.
 - Production validation requires a successful Vercel build and health endpoint response.
+
+## GitHub governance
+
+- GitHub is the source of truth for code, specifications, and change history.
+- Vercel remains the production runtime and continues to deploy from `main`.
+- All changes should be developed on separate branches and submitted through pull requests.
+- Pull requests must pass installation, tests, type checking, and production build validation before merge.
+- Preview deployments should be validated before production changes are merged.
+- Routine repository maintenance must not change MCP endpoints, tool contracts, authentication, environment variables, Vercel project linkage, or chart publishing behavior.
